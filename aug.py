@@ -5,9 +5,23 @@ import numpy as np
 import xml.etree.ElementTree as ET
 import imgaug as ia
 from imgaug import augmenters as iaa
+from imgaug import parameters as iap
 import argparse
 import json
 import glob
+import logging
+
+# LOG
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(formatter)
+logger.addHandler(stream_handler)
+
+file_handler = logging.FileHandler('logging.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 def make_dir(new_dir):
     if not os.path.exists(new_dir):
@@ -76,7 +90,7 @@ def aug_code(dir: str,
             # rotate & deep dark color
             seq = iaa.Sequential([
                 iaa.WithBrightnessChannels(
-                    iaa.Add(-80), from_colorspace=iaa.CSPACE_BGR),
+                    iaa.Add(-60), from_colorspace=iaa.CSPACE_BGR),
                 iaa.Rot90((1, 3), keep_size=True)
             ])
 
@@ -133,6 +147,13 @@ def aug_code(dir: str,
                 iaa.Multiply((1.2, 1.2))
             ])
 
+        if method == 'fs':
+            # flip & sharpen
+            seq = iaa.Sequential([
+                 iaa.Fliplr(1),
+                 iaa.Sharpen(alpha=0.5)
+            ])
+
         if method == 'ts':
             # translation & shearing
             seq = iaa.Sequential([
@@ -163,6 +184,8 @@ def aug_code(dir: str,
         new_image_file = new_dir + method + annotations[idx][2]
         cv2.imwrite(new_image_file, image_aug)
 
+        logger.info(f'SUCCSSFULLY COMPLETED : {new_image_file}')
+
         h, w = np.shape(image_aug)[0:2]
 
         root = ET.Element("annotation")
@@ -186,6 +209,8 @@ def aug_code(dir: str,
         new_xml_file = new_dir + method + annotations[idx][1]
         with open(new_xml_file, "w", encoding='utf-8') as f:
             f.write(xml_str)
+
+        logger.info(f'SUCCSSFULLY COMPLETED : {new_xml_file}')
 
         classes = ['구진', '농포', '결절', '낭포', '결절/낭포', '켈로이드', '화이트헤드', '블랙헤드', '모낭염', '여드름자국', '여드름흉터', '표피낭종']
         files = glob.glob(os.path.join(new_dir, '*.xml'))
@@ -215,6 +240,8 @@ def aug_code(dir: str,
             if result:
                 with open(os.path.join(new_dir, f"{filename}.txt"), "w", encoding="utf-8") as f:
                     f.write("\n".join(result))
+
+        logger.info(f'SUCCSSFULLY COMPLETED : {new_dir}{filename}.txt')
 
 def main():
     parser = argparse.ArgumentParser(

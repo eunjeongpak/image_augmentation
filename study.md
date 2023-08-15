@@ -3,7 +3,7 @@
 - 단,Augmentation 과정에서 데이터의 본질이 흐려지지 않도록 주의해야 함
 - 방법
   - 1> augmentation method
-    ![img.png](img.png)
+  ![img.png](img.png)
     - Image Data Augmentation
       - Basic Image Manipulations
         - Geometric Transformations
@@ -30,7 +30,7 @@
         - AutoAugment
         - Smart Augmentation
   - 2> augmentation method
-    ![image2.jpg](image2.jpg)
+    ![img2.jpg](img2.jpg)
     - A> Basic Image Data Augmentations
       - Image Manipulation
         - Geometric: Rotation, Translation, Shearing
