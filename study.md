@@ -31,21 +31,21 @@
         - Smart Augmentation
   - 2> augmentation method
     ![img2.jpg](img2.jpg)
-    - A> Basic Image Data Augmentations
-      - Image Manipulation
-        - Geometric: Rotation, Translation, Shearing
-        - Non-Geometric: Flipping, Cropping, Noise injection, Color Space, Jitter, Kernel
-      - Image Erasing
-        - Erasing: Cutout, Random, Erasing, Hide and Seek, GridMask
-    - B> Advanced Data Augmentations
-      - Image Mixing
-        - Single Image Mixing: Local Augment, Self-Aug, SalfMix, KeepAugment, CutThumbnail
-        - Multi-Images Mixing: Mixup, CutMix, SaliencyMix ...
-      - Auto Augment
-        - Reinforcement Learning Based: AutoAugment, Fast AutoAug ...
-        - Non-Reinforcement Learning Based: RandAug, ADA ...
-      - Feature Augmentation
-      - Neural Style Transfer
+      - A> Basic Image Data Augmentations
+        - Image Manipulation
+          - Geometric: Rotation, Translation, Shearing
+          - Non-Geometric: Flipping, Cropping, Noise injection, Color Space, Jitter, Kernel
+        - Image Erasing
+          - Erasing: Cutout, Random, Erasing, Hide and Seek, GridMask
+      - B> Advanced Data Augmentations
+        - Image Mixing
+          - Single Image Mixing: Local Augment, Self-Aug, SalfMix, KeepAugment, CutThumbnail
+          - Multi-Images Mixing: Mixup, CutMix, SaliencyMix ...
+        - Auto Augment
+          - Reinforcement Learning Based: AutoAugment, Fast AutoAug ...
+          - Non-Reinforcement Learning Based: RandAug, ADA ...
+        - Feature Augmentation
+        - Neural Style Transfer
       
 - 참고 논문
   - A survey on Image Data Augmentation for Deep Learning (2019)
