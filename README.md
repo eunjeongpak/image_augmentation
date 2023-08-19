@@ -55,7 +55,7 @@ cd utils
 python aug.py --dir {dir} --new_dir {new_dir} 
 [--example]
 cd utils
-python aug.py --dir 'D:/img_folder/all_ex/' --new_dir 'D:/img_folder/img_aug/'
+python augment.py --dir 'D:/img_folder/all_ex/' --new_dir 'D:/img_folder/img_aug/'
 ```
 
 - dir : original file path
